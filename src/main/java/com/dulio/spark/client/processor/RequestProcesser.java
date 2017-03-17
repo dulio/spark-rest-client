@@ -6,6 +6,6 @@ import com.dulio.spark.client.response.CreateSubmissionResponse;
 /**
  * Created by shenhd on 2017/3/14.
  */
-public interface IProcesser {
-    public CreateSubmissionResponse CreateSubmission(CreateSubmissionRequest request);
+public interface RequestProcesser {
+    public CreateSubmissionResponse CreateSubmission(CreateSubmissionRequest request) throws Exception;
 }

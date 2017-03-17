@@ -35,5 +35,8 @@ public class CreateSubmissionRequest extends Request {
     private String clientSparkVersion;
     private Map<String, String> environmentVariables;
     private String mainClass;
+    /**
+     * http://spark.apache.org/docs/latest/configuration.html
+     */
     private Map<String, String> sparkProperties;
 }
