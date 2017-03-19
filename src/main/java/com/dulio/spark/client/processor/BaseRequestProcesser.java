@@ -12,4 +12,8 @@ import com.dulio.spark.client.util.JSONUtil;
  */
 public abstract class BaseRequestProcesser implements RequestProcesser {
     protected ServerConfig serverConfig;
+
+    public void setServerConfig(ServerConfig serverConfig) {
+        this.serverConfig = serverConfig;
+    }
 }

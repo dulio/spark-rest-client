@@ -18,9 +18,10 @@ public class RestProcessor extends BaseRequestProcesser {
             throw new Exception("server config is empty");
         }
 
+        String reqUrl = serverConfig.getSparkMasterRest() + "/v1/submissions/create";
         CreateSubmissionResponse resp = null;
         try {
-            String respStr = HTTPClient.sendJsonPost(serverConfig.getSparkMasterRest(), httpRequest);
+            String respStr = HTTPClient.sendJsonPost(reqUrl, httpRequest);
             resp = JSONUtil.deserialize(respStr);
         } catch (Exception e) {
             LogUtil.log(e.getMessage());
