@@ -22,7 +22,7 @@ public class RestProcessor extends BaseRequestProcesser {
         CreateSubmissionResponse resp = null;
         try {
             String respStr = HTTPClient.sendJsonPost(reqUrl, httpRequest);
-            resp = JSONUtil.deserialize(respStr, CreateSubmissionResponse.class);
+            resp = JSONUtil.deserialize(respStr);
         } catch (Exception e) {
             LogUtil.log(e.getMessage());
         }

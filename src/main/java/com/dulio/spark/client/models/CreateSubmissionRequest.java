@@ -1,4 +1,4 @@
-package com.dulio.spark.client.request;
+package com.dulio.spark.client.models;
 
 import java.util.List;
 import java.util.Map;
