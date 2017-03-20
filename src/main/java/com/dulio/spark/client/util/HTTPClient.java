@@ -21,8 +21,7 @@ import java.util.Map;
  * Created by shenhd on 2017/3/15.
  */
 public class HTTPClient {
-
-    public static String sendJsonPost(String url,String json) {
+    public static String sendPost(String url, String json) {
         CloseableHttpClient client = HttpClients.createDefault();
         HttpPost post = new HttpPost(url);
         String response = "";

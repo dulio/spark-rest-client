@@ -3,24 +3,20 @@ package com.dulio.spark.client.models;
 /**
  * example:
  * {
-     "action" : "SubmissionStatusResponse",
-     "driverState" : "FINISHED",
+     "action" : "KillSubmissionResponse",
+     "message" : "Kill request for driver-20151008145126-0000 submitted",
      "serverSparkVersion" : "1.5.0",
      "submissionId" : "driver-20151008145126-0000",
-     "success" : true,
-     "workerHostPort" : "192.168.3.153:46894",
-     "workerId" : "worker-20151007093409-192.168.3.153-46894"
+     "success" : true
   }
  * Created by shenhd on 2017/3/14.
  */
-public class SubmissionStatusResponse extends Response {
+public class KillSubmissionResponse extends Response {
     private String action;
-    private String driverState;
+    private String message;
     private String serverSparkVersion;
     private String submissionId;
     private Boolean success;
-    private String workerHostPort;
-    private String workerId;
 
     public String getAction() {
         return action;
@@ -30,12 +26,12 @@ public class SubmissionStatusResponse extends Response {
         this.action = action;
     }
 
-    public String getDriverState() {
-        return driverState;
+    public String getMessage() {
+        return message;
     }
 
-    public void setDriverState(String driverState) {
-        this.driverState = driverState;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public String getServerSparkVersion() {
@@ -60,21 +56,5 @@ public class SubmissionStatusResponse extends Response {
 
     public void setSuccess(Boolean success) {
         this.success = success;
-    }
-
-    public String getWorkerHostPort() {
-        return workerHostPort;
-    }
-
-    public void setWorkerHostPort(String workerHostPort) {
-        this.workerHostPort = workerHostPort;
-    }
-
-    public String getWorkerId() {
-        return workerId;
-    }
-
-    public void setWorkerId(String workerId) {
-        this.workerId = workerId;
     }
 }

@@ -17,7 +17,7 @@ public class http {
 
     @Test
     public void test_Post_Data() {
-        String resp = HTTPClient.sendJsonPost("https://echo.getpostman.com/post", "test");
+        String resp = HTTPClient.sendPost("https://echo.getpostman.com/post", "test");
         System.out.println(resp);
     }
 }
