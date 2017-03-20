@@ -1,4 +1,4 @@
-package com.dulio.spark.client.response;
+package com.dulio.spark.client.models;
 
 /**
  * example:
@@ -11,7 +11,7 @@ package com.dulio.spark.client.response;
      }
  * Created by shenhd on 2017/3/14.
  */
-public class CreateSubmissionResponse extends Response {
+public class SubmissionStatusResponse extends Response {
 
     private String message;
     private String serverSparkVersion;

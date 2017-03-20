@@ -2,8 +2,8 @@ package com.dulio.spark.client;
 
 import com.dulio.spark.client.config.ServerConfig;
 import com.dulio.spark.client.processor.RestProcessor;
-import com.dulio.spark.client.request.CreateSubmissionRequest;
-import com.dulio.spark.client.response.CreateSubmissionResponse;
+import com.dulio.spark.client.models.CreateSubmissionRequest;
+import com.dulio.spark.client.models.CreateSubmissionResponse;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -58,7 +58,7 @@ public class rest {
         req.setSparkProperties(sparkProperties);
 
         try {
-            CreateSubmissionResponse resp = processor.CreateSubmission(req);
+            CreateSubmissionResponse resp = processor.createSubmission(req);
             System.out.println("REST response:\n" + resp);
         } catch (Exception e) {
             System.out.println(e.getMessage());

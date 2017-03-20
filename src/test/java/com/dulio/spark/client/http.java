@@ -11,7 +11,7 @@ import java.util.HashMap;
 public class http {
     @Test
     public void test_Get() {
-        String resp = HTTPClient.sendGet("http://www.mosrv.com/", new HashMap<String, Object>());
+        String resp = HTTPClient.sendGet("http://www.baidu.com/", new HashMap<String, Object>());
         System.out.println(resp);
     }
 
