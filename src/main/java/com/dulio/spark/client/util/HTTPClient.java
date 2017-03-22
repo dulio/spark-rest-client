@@ -26,10 +26,12 @@ public class HTTPClient {
         HttpPost post = new HttpPost(url);
         String response = "";
         try {
-            StringEntity s = new StringEntity(json);
-            s.setContentEncoding("UTF-8");
-            s.setContentType("application/json");
-            post.setEntity(s);
+            if (null != json && !json.isEmpty()) {
+                StringEntity s = new StringEntity(json);
+                s.setContentEncoding("UTF-8");
+                s.setContentType("application/json");
+                post.setEntity(s);
+            }
 
             HttpResponse res = client.execute(post);
             if(res.getStatusLine().getStatusCode() == HttpStatus.SC_OK){

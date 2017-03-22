@@ -13,8 +13,7 @@ public class JSONUtil {
         return JSON.toJSONString(model);
     }
 
-    public static <T> T deserialize(String jsonStr) {
-        Type type = new TypeReference<T>() {}.getType();
-        return JSON.parseObject(jsonStr, type);
+    public static <T> T deserialize(String jsonStr, Class<T> clazz) {
+        return JSON.parseObject(jsonStr, clazz);
     }
 }

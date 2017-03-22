@@ -23,7 +23,7 @@ public class RestProcessor extends BaseRequestProcesser {
         CreateSubmissionResponse resp = null;
         try {
             String respStr = HTTPClient.sendPost(reqUrl, httpRequest);
-            resp = JSONUtil.deserialize(respStr);
+            resp = JSONUtil.deserialize(respStr, CreateSubmissionResponse.class);
         } catch (Exception e) {
             LogUtil.log(e.getMessage());
         }
@@ -40,7 +40,7 @@ public class RestProcessor extends BaseRequestProcesser {
         SubmissionStatusResponse resp = null;
         try {
             String respStr = HTTPClient.sendGet(reqUrl, new HashMap<String,Object>());
-            resp = JSONUtil.deserialize(respStr);
+            resp = JSONUtil.deserialize(respStr, SubmissionStatusResponse.class);
         } catch (Exception e) {
             LogUtil.log(e.getMessage());
         }
@@ -53,11 +53,11 @@ public class RestProcessor extends BaseRequestProcesser {
             throw new Exception("server config is empty");
         }
 
-        String reqUrl = serverConfig.getSparkMasterRest() + "v1/submissions/kill" + request.getSubmissionId();
+        String reqUrl = serverConfig.getSparkMasterRest() + "/v1/submissions/kill/" + request.getSubmissionId();
         KillSubmissionResponse resp = null;
         try {
-            String respStr = HTTPClient.sendPost(reqUrl, "{}");
-            resp = JSONUtil.deserialize(respStr);
+            String respStr = HTTPClient.sendPost(reqUrl, "");
+            resp = JSONUtil.deserialize(respStr, KillSubmissionResponse.class);
         } catch (Exception e) {
             LogUtil.log(e.getMessage());
         }

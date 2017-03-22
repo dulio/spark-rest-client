@@ -1,9 +1,8 @@
 package com.dulio.spark.client;
 
 import com.dulio.spark.client.config.ServerConfig;
+import com.dulio.spark.client.models.*;
 import com.dulio.spark.client.processor.RestProcessor;
-import com.dulio.spark.client.models.CreateSubmissionRequest;
-import com.dulio.spark.client.models.CreateSubmissionResponse;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -20,15 +19,41 @@ public class rest {
     public void init() {
         ServerConfig config = new ServerConfig();
         config.setServerSparkVersion("2.0.2");
-        config.setSparkMaster("spark://V192-168-33-10:7077");
-        config.setSparkMasterRest("http://V192-168-33-10:6066");
+        //config.setSparkMaster("spark://V192-168-33-10:7077");
+        //config.setSparkMasterRest("http://V192-168-33-10:6066");
+
+        config.setSparkMaster("spark://10.2.223.223:7077");
+        config.setSparkMasterRest("http://10.2.223.223:6066");
 
         processor = new RestProcessor();
         processor.setServerConfig(config);
     }
 
     @Test
-    public void test_SubmitJob() {
+    public void test_JobSchedule() {
+
+        try {
+            System.out.println("job submit start...");
+            String jobId = test_JobSubmit();
+            System.out.println("job submit end...");
+
+            Thread.sleep(20000);
+
+            System.out.println("job status start...");
+            test_JobStatus(jobId);
+            System.out.println("job status end...");
+
+            Thread.sleep(30000);
+
+            System.out.println("job kill start...");
+            test_KillJob(jobId);
+            System.out.println("job kill end...");
+        } catch (Exception e) {
+
+        }
+    }
+
+    public String test_JobSubmit() {
         CreateSubmissionRequest req = new CreateSubmissionRequest();
 
         req.setAction("CreateSubmissionRequest");
@@ -57,9 +82,36 @@ public class rest {
         sparkProperties.put("spark.master"				, "spark://V192-168-33-10:6066");
         req.setSparkProperties(sparkProperties);
 
+        CreateSubmissionResponse resp = new CreateSubmissionResponse();
         try {
-            CreateSubmissionResponse resp = processor.createSubmission(req);
-            System.out.println("REST response:\n" + resp);
+            resp = processor.createSubmission(req);
+            System.out.println("submit resp:\n" + resp.getSuccess());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        return resp.getSubmissionId();
+    }
+
+    public void test_JobStatus(String submissionId) {
+        SubmissionStatusRequest req = new SubmissionStatusRequest();
+        req.setSubmissionId(submissionId);
+
+        try {
+            SubmissionStatusResponse resp = processor.submissionStatus(req);
+            System.out.println("driver state:\n" + resp.getDriverState());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void test_KillJob(String submissionId) {
+        KillSubmissionRequest req = new KillSubmissionRequest();
+        req.setSubmissionId(submissionId);
+
+        try {
+            KillSubmissionResponse resp = processor.killSubmission(req);
+            System.out.println("kill resp:\n" + resp.getSuccess());
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
