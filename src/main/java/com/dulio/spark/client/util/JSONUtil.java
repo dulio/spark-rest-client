@@ -14,6 +14,11 @@ public class JSONUtil {
     }
 
     public static <T> T deserialize(String jsonStr, Class<T> clazz) {
-        return JSON.parseObject(jsonStr, clazz);
+        try {
+            return JSON.parseObject(jsonStr, clazz);
+        } catch (Exception e) {
+            LogUtil.log(e.getMessage());
+            return null;
+        }
     }
 }

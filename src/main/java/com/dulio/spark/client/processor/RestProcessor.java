@@ -53,10 +53,10 @@ public class RestProcessor extends BaseRequestProcesser {
             throw new Exception("server config is empty");
         }
 
-        String reqUrl = serverConfig.getSparkMasterRest() + "/v1/submissions/kill/" + request.getSubmissionId();
+        String reqUrl = serverConfig.getSparkMasterRest() + "v1/submissions/kill" + request.getSubmissionId();
         KillSubmissionResponse resp = null;
         try {
-            String respStr = HTTPClient.sendPost(reqUrl, "");
+            String respStr = HTTPClient.sendPost(reqUrl, "{}");
             resp = JSONUtil.deserialize(respStr, KillSubmissionResponse.class);
         } catch (Exception e) {
             LogUtil.log(e.getMessage());
