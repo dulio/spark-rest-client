@@ -79,7 +79,7 @@ public class rest {
         sparkProperties.put("spark.cores.max"			, "5");
         sparkProperties.put("spark.executor.memory"		, "512M");
         sparkProperties.put("spark.driver.memory"		, "512M");
-        sparkProperties.put("spark.master"				, "spark://V192-168-33-10:6066");
+        //sparkProperties.put("spark.master"				, "spark://V192-168-33-10:6066");
         req.setSparkProperties(sparkProperties);
 
         CreateSubmissionResponse resp = new CreateSubmissionResponse();
